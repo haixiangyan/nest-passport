@@ -6,6 +6,7 @@ import {PassportStrategy} from "@nestjs/passport";
 export class BasicStrategy extends PassportStrategy(Strategy) {
   async validate() {
     console.log('No console.log here')
+    console.log('basic strategy')
     return {name: 'Jack'}
   }
 }
