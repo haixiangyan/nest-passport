@@ -1,6 +1,7 @@
 import {Controller, Post, UseGuards, Request, Get} from '@nestjs/common';
 import {LocalAuthGuard} from "./local-auth.guard";
 import {BasicAuthGuard} from "./basic-auth.guard";
+import {CookieAuthGuard} from "./cookie-auth.guard";
 
 @Controller('auth')
 export class AuthController {
@@ -19,6 +20,18 @@ export class AuthController {
   @UseGuards(BasicAuthGuard)
   @Post('basic-post')
   async basicPost(@Request() request) {
+    return request.user
+  }
+
+  @UseGuards(CookieAuthGuard)
+  @Post('cookie-post')
+  async cookiePost(@Request() request) {
+    return request.user
+  }
+
+  @UseGuards(CookieAuthGuard)
+  @Get('cookie-get')
+  async cookieGet(@Request() request) {
     return request.user
   }
 }
